@@ -9,6 +9,7 @@ module.exports = {
         "mdCompile.json",
         "nodemon.json",
         "package-lock.json",
+        "gulpfile.babel.js",
         ".clean-publish.js"
     ],
     "packageManager": "npm",

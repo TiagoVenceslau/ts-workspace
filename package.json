@@ -7,13 +7,14 @@
     "start:dev": "nodemon",
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
-    "build:prod": "rimraf ./build && tsc",
+    "build:prod": "rimraf ./build && npm run minify",
+    "minify": "npm install gulp gulp-babel gulp-rename gulp-sourcemaps gulp-typescript gulp-uglify && npx gulp && npm uninstall gulp gulp-babel gulp-rename gulp-sourcemaps gulp-typescript gulp-uglify",
     "test": "jest --coverage",
     "prepare-release": "npm run build:prod && npm run coverage && npm run docs && git add . && git commit -m \"Preparing for release\"",
     "release": "npm version from-git && git push && git push --tags",
     "clean-publish": "npx clean-publish",
     "coverage": "npm test && npm install jest-coverage-badges && jest-coverage-badges --input \"./workdocs/coverage/coverage-summary.json\" --output \"./workdocs/badges\" && npm uninstall jest-coverage-badges",
-    "docs": "npx rimraf ./docs/* && cp -r ./workdocs/assets ./docs/assets && npm install better-docs taffydb && npx markdown-include ./mdCompile.json && npx jsdoc -c jsdocs.json -t ./node_modules/better-docs && cd docs && ./../workdocs/bin/correct_windows_names.sh . && cd .. && npm remove better-docs taffydb"
+    "docs": "npm run coverage && npx rimraf ./docs/* && cp -r ./workdocs/assets ./docs/assets && npm install better-docs taffydb && npx markdown-include ./mdCompile.json && npx jsdoc -c jsdocs.json -t ./node_modules/better-docs && cd docs && ./../workdocs/bin/correct_windows_names.sh . && cd .. && npm remove better-docs taffydb"
   },
   "repository": {
     "type": "git",
@@ -45,7 +46,8 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "uglify-es": "^3.3.9"
   },
   "dependencies": {}
 }
