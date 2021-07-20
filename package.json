@@ -1,0 +1,51 @@
+{
+  "name": "ts-workspace",
+  "version": "1.0.0",
+  "description": "template for ts projects",
+  "main": "./build/index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start": "npm run build && node build/index.js",
+    "build": "rimraf ./build && tsc",
+    "build:prod": "rimraf ./build && tsc",
+    "test": "jest --coverage",
+    "prepare-release": "npm run build:prod && npm run coverage && npm run docs && git add . && git commit -m \"Preparing for release\"",
+    "release": "npm version from-git && git push && git push --tags",
+    "clean-publish": "npx clean-publish",
+    "coverage": "npm test && npm install jest-coverage-badges && jest-coverage-badges --input \"./workdocs/coverage/coverage-summary.json\" --output \"./workdocs/badges\" && npm uninstall jest-coverage-badges",
+    "docs": "npx rimraf ./docs/* && cp -r ./workdocs/assets ./docs/assets && npm install better-docs taffydb && npx markdown-include ./mdCompile.json && npx jsdoc -c jsdocs.json -t ./node_modules/better-docs && cd docs && ./../workdocs/bin/correct_windows_names.sh . && cd .. && npm remove better-docs taffydb"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiagoVenceslau/ts-workspace.git"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "keywords": [
+    "template",
+    "ts"
+  ],
+  "author": "TiagoVenceslau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TiagoVenceslau/js-workspace/issues"
+  },
+  "homepage": "https://github.com/TiagoVenceslau/js-workspace#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.0.1",
+    "clean-publish": "^2.2.0",
+    "jest": "^27.0.6",
+    "jsdoc": "^3.6.7",
+    "markdown-include": "^0.4.3",
+    "nodemon": "^2.0.10",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {}
+}
