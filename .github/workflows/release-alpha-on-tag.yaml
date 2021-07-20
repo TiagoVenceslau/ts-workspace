@@ -5,7 +5,7 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*.*.*-alpha' # Push events to matching v*-alpha, i.e. v1.0.0-alpha
-      - '!* [ignore CI]'
+      - '!*-no-cli'
 
 jobs:
   deploy:
