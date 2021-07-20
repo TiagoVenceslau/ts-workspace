@@ -1,15 +1,15 @@
-![Commits](https://img.shields.io/github/commits-since/TiagoVenceslau/decorator-validation/0.1.0.svg)
+![Commits](https://img.shields.io/github/commits-since/TiagoVenceslau/ts-workspace/1.0.0.svg)
 
-![Forks](https://img.shields.io/github/forks/TiagoVenceslau/decorator-validation.svg)
-![Stars](https://img.shields.io/github/stars/TiagoVenceslau/decorator-validation.svg)
-![Watchers](https://img.shields.io/github/watchers/TiagoVenceslau/decorator-validation.svg)
+![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)
+![Stars](https://img.shields.io/github/stars/TiagoVenceslau/ts-workspace.svg)
+![Watchers](https://img.shields.io/github/watchers/TiagoVenceslau/ts-workspace.svg)
 
-![Open Issues](https://img.shields.io/github/issues/TiagoVenceslau/decorator-validation.svg)
-![Closed Issues](https://img.shields.io/github/issues-closed/TiagoVenceslau/decorator-validation.svg)
-![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/decorator-validation.svg)
+![Open Issues](https://img.shields.io/github/issues/TiagoVenceslau/ts-workspace.svg)
+![Closed Issues](https://img.shields.io/github/issues-closed/TiagoVenceslau/ts-workspace.svg)
+![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/ts-workspace.svg)
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=decorator-validation)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=ts-workspace)](https://github.com/TiagoVenceslau/ts-workspace)
 
 
 

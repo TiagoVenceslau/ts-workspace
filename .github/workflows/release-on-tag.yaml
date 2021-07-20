@@ -5,7 +5,7 @@ on:
     tags:
       - 'v*.*.*'
       - '!*-alpha'
-      - '!*-no-cli'
+      - '!*-no-ci'
 
 jobs:
   deploy:

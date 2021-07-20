@@ -17,20 +17,20 @@
 Example introduction for the Typescript template.
 
 
-## Repository
+### Repository
 
-![Commits](https://img.shields.io/github/commits-since/TiagoVenceslau/decorator-validation/0.1.0.svg)
+![Commits](https://img.shields.io/github/commits-since/TiagoVenceslau/ts-workspace/1.0.0.svg)
 
-![Forks](https://img.shields.io/github/forks/TiagoVenceslau/decorator-validation.svg)
-![Stars](https://img.shields.io/github/stars/TiagoVenceslau/decorator-validation.svg)
-![Watchers](https://img.shields.io/github/watchers/TiagoVenceslau/decorator-validation.svg)
+![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)
+![Stars](https://img.shields.io/github/stars/TiagoVenceslau/ts-workspace.svg)
+![Watchers](https://img.shields.io/github/watchers/TiagoVenceslau/ts-workspace.svg)
 
-![Open Issues](https://img.shields.io/github/issues/TiagoVenceslau/decorator-validation.svg)
-![Closed Issues](https://img.shields.io/github/issues-closed/TiagoVenceslau/decorator-validation.svg)
-![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/decorator-validation.svg)
+![Open Issues](https://img.shields.io/github/issues/TiagoVenceslau/ts-workspace.svg)
+![Closed Issues](https://img.shields.io/github/issues-closed/TiagoVenceslau/ts-workspace.svg)
+![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/ts-workspace.svg)
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=decorator-validation)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=ts-workspace)](https://github.com/TiagoVenceslau/ts-workspace)
 
 
 
@@ -45,9 +45,7 @@ Example introduction for the Typescript template.
 
 
 
-## Tech Stack
-
-### Languages
+### Tech Stack
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -55,14 +53,15 @@ Example introduction for the Typescript template.
 ![ShellScript](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
 
-## Tested in:
+### Tested in:
 
 ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
 
-## Related Repositories
+### Related Repositories
 
+none
 
-
+### Social
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tiagovenceslau/)
 
