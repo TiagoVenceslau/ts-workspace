@@ -1,6 +1,6 @@
 {
   "name": "ts-workspace",
-  "version": "1.0.0-no-cli",
+  "version": "1.0.1-no-ci",
   "description": "template for ts projects",
   "main": "./build/index.js",
   "scripts": {
