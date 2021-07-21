@@ -25,4 +25,4 @@ jobs:
           author_name: Documentation Auto Updater
           author_email: documentation@auto-updater.com
           message: 'Documentation Update'
-          add: 'docs/*'
+          add: 'README.md docs/*'
