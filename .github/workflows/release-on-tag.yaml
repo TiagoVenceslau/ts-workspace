@@ -19,7 +19,7 @@ jobs:
         run: cat Release.txt
       - name: Get the version
         id: get_version
-        run: echo "::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}"
+        run: echo "::set-output name=VERSION::${GITHUB_REF}"
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

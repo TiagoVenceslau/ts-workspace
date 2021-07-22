@@ -6,7 +6,7 @@
 ![Licence](https://img.shields.io/github/license/TiagoVenceslau/decorator-validation.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/TiagoVenceslau/ts-workspace?style=plastic)
 ![GitHub top language](https://img.shields.io/github/languages/top/TiagoVenceslau/ts-workspace?style=plastic)
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/TiagoVenceslau/ts-workspace/master?style=plastic)
+[![CodeQL](https://github.com/starnowski/posmulten/workflows/CodeQL/badge.svg)](https://github.com/TiagoVenceslau/ts-workspace/actions?query=workflow%3ACodeQL)
 
 ![Node Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbadges%2Fshields%2Fmaster%2Fpackage.json&label=Node&query=$.engines.node&colorB=blue)
 ![NPM Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbadges%2Fshields%2Fmaster%2Fpackage.json&label=NPM&query=$.engines.npm&colorB=orange)

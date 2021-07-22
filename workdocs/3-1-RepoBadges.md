@@ -1,5 +1,3 @@
-![Commits](https://img.shields.io/github/commits-since/TiagoVenceslau/ts-workspace/1.0.0.svg)
-
 ![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)
 ![Stars](https://img.shields.io/github/stars/TiagoVenceslau/ts-workspace.svg)
 ![Watchers](https://img.shields.io/github/watchers/TiagoVenceslau/ts-workspace.svg)

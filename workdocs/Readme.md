@@ -4,10 +4,6 @@
 
 #include "./workdocs/3-Repo.md"
 
-#include "./workdocs/4-TechStack.md"
-
-#include "./workdocs/5-TestedIn.md"
-
 #include "./workdocs/6-Related.md"
 
 #include "./workdocs/7-Social.md"

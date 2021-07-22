@@ -5,7 +5,6 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*.*.*-alpha' # Push events to matching v*-alpha, i.e. v1.0.0-alpha
-      - '!*-no-ci'
 
 jobs:
   deploy:
@@ -19,7 +18,7 @@ jobs:
         run: cat Release.txt
       - name: Get the version
         id: get_version
-        run: echo "::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}"
+        run: echo "::set-output name=VERSION::${GITHUB_REF}"
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
