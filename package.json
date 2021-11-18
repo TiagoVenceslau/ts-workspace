@@ -5,13 +5,13 @@
   "main": "./build/index.js",
   "scripts": {
     "start:dev": "nodemon",
-    "start": "npm run build && node build/index.js",
-    "build": "rimraf ./build && tsc",
-    "build:prod": "rimraf ./build && npm run minify",
-    "minify": "npm install gulp gulp-babel gulp-rename gulp-sourcemaps gulp-typescript gulp-uglify gulp-concat && npx gulp && npm uninstall gulp gulp-babel gulp-rename gulp-sourcemaps gulp-typescript gulp-uglify gulp-concat",
+    "start": "npm run build && node lib/index.js",
+    "build": "rimraf ./lib && tsc",
+    "build:prod": "rimraf ./lib && tsc && npm run minify",
+    "minify": "npm install gulp gulp-babel gulp-rename gulp-concat gulp-sourcemaps gulp-typescript gulp-uglify @babel/preset-env && npx gulp && npm uninstall gulp gulp-babel gulp-rename gulp-sourcemaps gulp-typescript gulp-uglify gulp-concat",
     "test": "jest --coverage",
-    "prepare-release": "npm run build:prod && npm run coverage && npm run docs && git add . && git commit -m \"Preparing for release\"",
-    "release": "npm version from-git && git push && git push --tags",
+    "prepare-release": "npm run build:prod && npm run docs",
+    "release": "./bin/tag-release.sh",
     "clean-publish": "npx clean-publish",
     "coverage": "npm test && npm install jest-coverage-badges && jest-coverage-badges --input \"./workdocs/coverage/coverage-summary.json\" --output \"./workdocs/badges\" && npm uninstall jest-coverage-badges",
     "docs": "npm run coverage && npx rimraf ./docs/* && cp -r ./workdocs/assets ./docs/assets && npm install better-docs taffydb && npx markdown-include ./mdCompile.json && npx jsdoc -c jsdocs.json -t ./node_modules/better-docs && cd docs && ./../workdocs/bin/correct_windows_names.sh . && cd .. && npm remove better-docs taffydb"
@@ -31,23 +31,22 @@
   "author": "TiagoVenceslau",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TiagoVenceslau/js-workspace/issues"
+    "url": "https://github.com/TiagoVenceslau/ts-workspace/issues"
   },
-  "homepage": "https://github.com/TiagoVenceslau/js-workspace#readme",
+  "homepage": "https://github.com/TiagoVenceslau/ts-workspace#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.15.8",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.0.1",
-    "clean-publish": "^2.2.0",
     "jest": "^27.0.6",
     "jsdoc": "^3.6.7",
     "markdown-include": "^0.4.3",
     "nodemon": "^2.0.10",
-    "reflect-metadata": "^0.1.13",
+    "np": "^7.5.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.5",
-    "uglify-es": "^3.3.9"
+    "typescript": "^4.3.5"
   },
   "dependencies": {}
 }

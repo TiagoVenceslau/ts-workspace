@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
       - '!*-alpha'
       - '!*-no-ci'
 
@@ -28,6 +28,6 @@ jobs:
           files: |
             Release.txt
             README.md
-            LICENCE.md
+            LICENSE.md
         env:
           GITHUB_TOKEN: ${{ secrets.CONSECUTIVE_ACTION_TRIGGER }}

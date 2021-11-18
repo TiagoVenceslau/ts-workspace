@@ -1,8 +1,6 @@
 
-./build
-
-
-
+/lib
+/dist
 
 # Created by https://www.toptal.com/developers/gitignore/api/webstorm+all,vim,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=webstorm+all,vim,node
@@ -94,7 +92,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/

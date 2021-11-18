@@ -1,3 +1,3 @@
-## Type Script Template
+## Typescript Project Workspace Template
 
-Example introduction for the Typescript template.
+With documentation, release mechanism and github workflows to match

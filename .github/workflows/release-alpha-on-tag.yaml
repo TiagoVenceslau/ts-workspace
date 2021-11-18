@@ -4,7 +4,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - 'v*.*.*-alpha' # Push events to matching v*-alpha, i.e. v1.0.0-alpha
+      - 'v[0-9]+.[0-9]+.[0-9]+-alpha' # Push events to matching v*-alpha, i.e. v1.0.0-alpha
 
 jobs:
   deploy:
@@ -27,6 +27,6 @@ jobs:
           files: |
             Release.txt
             README.md
-            LICENCE.md
+            LICENSE.md
         env:
           GITHUB_TOKEN: ${{ secrets.CONSECUTIVE_ACTION_TRIGGER }}
