@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/TiagoVenceslau/ts-workspace#readme",
   "devDependencies": {
-    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-env": "^7.16.4",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.0.1",
     "jest": "^27.0.6",
