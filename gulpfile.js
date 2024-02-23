@@ -5,8 +5,8 @@ import ts from "gulp-typescript";
 const {createProject} = ts;
 import sourcemaps from "gulp-sourcemaps";
 import uglify from "gulp-uglify";
-import merge from "gulp-if";
-import gulpIf from "merge-stream";
+import gulpIf from "gulp-if";
+import merge from "merge-stream";
 import named from "vinyl-named";
 import replace from "gulp-replace";
 import webpack from "webpack-stream";
@@ -133,16 +133,20 @@ function exportJSDist(){
 function makeDocs(){
     const copyFiles = (source, destination) => {
         return function copyFiles(){
-            return src(source + "/**/*" , { base: source }).pipe(dest(destination));
+            try {
+                return src(source + "/**/*" , { base: source }).pipe(dest(destination));
+            } catch (e){
+                throw e
+            }
         }
     }
 
     function compileReadme ()  {
-        return run("npx markdown-include ./mdCompile.json")()
+        return run.default("npx markdown-include ./mdCompile.json")()
     }
 
     function compileDocs() {
-        return run("npx jsdoc -c jsdocs.json -t ./node_modules/better-docs")()
+        return run.default("npx jsdoc -c jsdocs.json -t ./node_modules/better-docs")()
     }
 
 

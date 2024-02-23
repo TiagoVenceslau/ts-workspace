@@ -49,6 +49,6 @@
         "readme": "./README.md",
         "recurse": true,
         "verbose": true,
-        "tutorials": "./tests"
+        "tutorials": "workdocs/tutorials"
     }
 }

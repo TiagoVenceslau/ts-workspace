@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 function ask_yes_or_no(){
     # Test if there are enough arguments
