@@ -9,6 +9,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.CONSECUTIVE_ACTION_TRIGGER }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,5 +30,4 @@ jobs:
             Release.txt
             README.md
             LICENSE.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.CONSECUTIVE_ACTION_TRIGGER }}
+#

@@ -10,9 +10,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.CONSECUTIVE_ACTION_TRIGGER }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Build
         run: echo ${{ github.sha }} > Release.txt
       - name: Test
@@ -29,5 +31,3 @@ jobs:
             Release.txt
             README.md
             LICENSE.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.CONSECUTIVE_ACTION_TRIGGER }}

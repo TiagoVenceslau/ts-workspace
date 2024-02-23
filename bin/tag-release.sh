@@ -43,12 +43,8 @@ function ask(){
     echo "$real_answer"
 }
 
-
-echo "Setting node to 14"
-nvm use 14
-
 echo "Listing existing tags..."
-git tag
+git tag --sort=taggerdate | head -n 5
 
 TAG=""
 
@@ -68,9 +64,7 @@ fi
 
 npm version "$TAG"
 
-git push
-
-git push --tags
+git push && git push --tags
 
 
 
