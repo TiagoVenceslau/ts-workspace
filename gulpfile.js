@@ -63,10 +63,7 @@ function getWebpackConfig(isESM, isDev){
 
         output: {
             filename: `${name}.bundle.${!isDev ? 'min.' : ''}${isESM ? 'esm.' : ''}js`,
-            path: path.join(process.cwd(), "./dist/"),
-            library: {
-                type: "module",
-            },
+            path: path.join(process.cwd(), "./dist/")
         }
     }
 
@@ -93,7 +90,9 @@ function exportDefault(isDev, mode){
     return function exportDefault(){
         function createLib(){
             const tsProject = createProject('tsconfig.json', {
-                module: mode
+                module: mode,
+                declaration: true,                         /* Generates corresponding '.d.ts' file. */
+                declarationMap: true
             });
 
             const stream =  src('./src/**/*.ts')
