@@ -1,6 +1,6 @@
 {
   "name": "ts-workspace",
-  "version": "1.0.1-no-ci",
+  "version": "1.2.0",
   "description": "template for ts projects",
   "type": "module",
   "exports": {
