@@ -50,7 +50,7 @@ function getWebpackConfig(isESM, isDev){
                         }
                     }],
                     include:[
-                        path.resolve(__dirname, "src")
+                        path.join(process.cwd(), "./src")
                     ],
                     exclude: /node_modules/,
                 }
@@ -63,7 +63,7 @@ function getWebpackConfig(isESM, isDev){
 
         output: {
             filename: `${name}.bundle.${!isDev ? 'min.' : ''}${isESM ? 'esm.' : ''}js`,
-            path: path.resolve(__dirname, "dist/"),
+            path: path.join(process.cwd(), "./dist/"),
             library: {
                 type: "module",
             },
@@ -174,12 +174,11 @@ export const dev = series(
 
 export const prod = series(
     parallel(
-        exportDefault(true),
-        exportESMDist, exportJSDist)
-    ,
-    parallel(
-        patchFiles(false),
+        series(
+            exportDefault(true,"commonjs"),
+            exportDefault(true,"es2022")
+        ), exportESMDist, exportJSDist),
         patchFiles(true)
-    ))
+    )
 
 export const docs = makeDocs()
