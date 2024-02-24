@@ -41,6 +41,7 @@
   },
   "homepage": "https://github.com/TiagoVenceslau/ts-workspace#readme",
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
     "gulp-replace": "^1.1.4",
