@@ -13,7 +13,10 @@
 
 ## Typescript Project Workspace Template
 
-With documentation, release mechanism and github workflows to match
+A typescript project template repository:
+ - exports COMMONJS (lib) and ESM (lib/esm)
+
+With documentation, release mechanisms and gitlab/github workflows to match
 
 
 ![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)
