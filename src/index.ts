@@ -4,5 +4,6 @@
  */
 
 export * from './hello';
+export * from './folder';
 
 export const VERSION = "##VERSION##"

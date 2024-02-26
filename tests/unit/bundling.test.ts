@@ -2,20 +2,16 @@ import {VERSION} from "../../lib"; // at least one import is needed so the file 
 
 describe("Distribution Tests", () => {
     it ("reads lib", () => {
-        try {
-            const {VERSION} = require("../../lib");
-            expect(VERSION).toBeDefined();
-        } catch (e) {
-            expect(e).toBeUndefined();
-        }
+        const {VERSION, goodbye, helloWorld} = require("../../lib");
+        expect(VERSION).toBeDefined();
+        expect(goodbye).toBeDefined();
+        expect(helloWorld).toBeDefined();
     })
 
     it("reads JS Bundle", () => {
-        try {
-            const {VERSION} = require("../../dist/ts-workspace.bundle.min.js");
-            expect(VERSION).toBeDefined();
-        } catch (e) {
-            expect(e).toBeUndefined();
-        }
+        const {VERSION, goodbye, helloWorld} = require("../../dist/ts-workspace.bundle.min.js");
+        expect(VERSION).toBeDefined();
+        expect(goodbye).toBeDefined();
+        expect(helloWorld).toBeDefined();
     })
 })
