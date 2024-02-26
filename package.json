@@ -27,8 +27,8 @@
     "url": "git+https://github.com/TiagoVenceslau/ts-workspace.git"
   },
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=8.0.0"
   },
   "keywords": [
     "template",

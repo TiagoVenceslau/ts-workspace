@@ -4,3 +4,5 @@
  */
 
 export * from './hello';
+
+export const VERSION = "##VERSION##"

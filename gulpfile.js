@@ -81,7 +81,7 @@ function getWebpackConfig(isESM, isDev){
             });
 
     if (isDev)
-        webPackConfig.devtool = 'cheap-module-source-map';
+        webPackConfig.devtool = 'eval-source-map';
 
     return webPackConfig;
 }
