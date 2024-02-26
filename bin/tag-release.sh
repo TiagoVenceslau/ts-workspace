@@ -44,7 +44,7 @@ function ask(){
 }
 
 echo "Listing existing tags..."
-git tag --sort=taggerdate | head -n 5
+git tag --sort=-taggerdate | head -n 5
 
 TAG=""
 
