@@ -1,7 +1,7 @@
 npm run flash-forward-dependencies
-node<<EOF > package.json && mv package.json file.json
-var o = $(< file.json);
+node<<EOF > _.json && mv _.json package.json
+var o = $(cat package.json);
 delete o["scripts"]["preinstall"];
-console.log(JSON.stringify(o, null, 4));
+console.log(JSON.stringify(o, null, 2));
 EOF
 rm -f ./bin/template_setup.sh

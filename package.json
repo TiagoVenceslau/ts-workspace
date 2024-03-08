@@ -9,7 +9,6 @@
   },
   "types": "lib/index.d.ts",
   "scripts": {
-    "preinstall": "./bin/template_setup.sh",
     "start:dev": "nodemon",
     "start": "npm run build && node lib/index.js",
     "flash-forward-dependencies": "npx npm-check-updates -u",
