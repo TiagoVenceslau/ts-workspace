@@ -64,9 +64,13 @@ EOF
 touch .token
 
 # Create the initial commit after this runs
-git add .
-git commit -m "refs #1 - initial commit"
-git push
+if [[ $(git status --porcelain) ]]; then
+  git config user.email "setup@automation.com"
+  git config user.name "setup_automation"
+  git add .
+  git commit -m "refs #1 - initial commit"
+  git push
+fi
 
 # delete this file
 rm -f ./bin/template_setup.sh
