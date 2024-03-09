@@ -64,7 +64,7 @@ fi
 
 npm version "$TAG"
 
-git push && git push --tags
+git push --follow-tags
 
 
 

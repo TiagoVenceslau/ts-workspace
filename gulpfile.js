@@ -1,5 +1,6 @@
 import path from "path";
 import gulp from "gulp";
+import rename from "gulp-rename";
 const {src, dest, parallel, series} = gulp;
 import ts from "gulp-typescript";
 const {createProject} = ts;
@@ -58,7 +59,15 @@ function getWebpackConfig(isESM, isDev){
         },
 
         resolve: {
-            extensions: ['.ts', '.js']
+            extensions: ['.ts', '.js'],
+            fallback: {
+                "path": false,
+                "fs": false,
+                "stream": false,
+                "os": false,
+                "assert": false,
+                "util": false
+            }
         },
 
         output: {
@@ -87,12 +96,14 @@ function getWebpackConfig(isESM, isDev){
 }
 
 function exportDefault(isDev, mode){
-    return function exportDefault(){
+    const func = () => {
         function createLib(){
             const tsProject = createProject('tsconfig.json', {
                 module: mode,
-                declaration: true,                         /* Generates corresponding '.d.ts' file. */
-                declarationMap: true
+                declaration: true,
+                declarationMap: true,
+                emitDeclarationOnly: false,
+                isolatedModules: false
             });
 
             const stream =  src('./src/**/*.ts')
@@ -104,13 +115,24 @@ function exportDefault(isDev, mode){
 
             return merge([
                 stream.dts.pipe(dest(destPath)),
-                stream.js.pipe(gulpIf(!isDev, uglify())).pipe(gulpIf(isDev, sourcemaps.write())).pipe(dest(destPath))
+                stream.js.pipe(gulpIf(!isDev, uglify()))
+                    .pipe(gulpIf(isDev, sourcemaps.write()))
+                    .pipe(gulpIf(mode === "commonjs",
+                        rename((file) => {
+                            if (file.dirname === "." && file.basename === "index")
+                                Object.assign(file, {extname: ".cjs"})
+                            return file
+                        })))
+                    .pipe(dest(destPath))
             ])
         }
 
         return createLib()
     }
-
+    Object.defineProperty(func, "name", {
+        value: `exportDefault-${isDev ? "dev" : "prod"}-${mode}`
+    })
+    return func;
 }
 
 function exportBundles(isEsm, isDev){
@@ -121,12 +143,20 @@ function exportBundles(isEsm, isDev){
         .pipe(dest(`./dist${isEsm ? '/esm' : ""}`));
 }
 
-function exportESMDist(){
-    return exportBundles(true, false);
+function exportESMDist(isDev){
+    const func = () =>  exportBundles(true, isDev);
+    Object.defineProperty(func, "name", {
+        value: `exportESMDist-${isDev ? "dev" : "prod"}`
+    })
+    return func;
 }
 
-function exportJSDist(){
-    return exportBundles(false, false);
+function exportJSDist(isDev){
+    const func = () =>  exportBundles(false, isDev);
+    Object.defineProperty(func, "name", {
+        value: `exportJSDist-${isDev ? "dev" : "prod"}`
+    })
+    return func;
 }
 
 function makeDocs(){
@@ -148,36 +178,45 @@ function makeDocs(){
         return run.default("npx jsdoc -c jsdocs.json -t ./node_modules/better-docs")()
     }
 
-
-    return series(compileReadme, compileDocs, parallel(...[
+    return series(
+        compileReadme,
+        compileDocs,
+        parallel(...[
             {
                 src: "workdocs/assets",
-                dest:  "./docs/assets"
+                dest:  "./docs/workdocs/assets"
             },
             {
                 src: "workdocs/coverage",
-                dest:  "./docs/coverage"
+                dest:  "./docs/workdocs/coverage"
             },
             {
                 src: "workdocs/badges",
-                dest:  "./docs/badges"
+                dest:  "./docs/workdocs/badges"
+            },
+            {
+                src: "workdocs/resources",
+                dest:  "./docs/workdocs/resources"
             }
         ].map(e => copyFiles(e.src, e.dest)))
     )
 }
 
 export const dev = series(
-    exportDefault(true,"commonjs"),
-    exportDefault(true,"es2022")
+    parallel(
+        series(
+            exportDefault(true,"commonjs"),
+            exportDefault(true,"es2022")
+        ), exportESMDist(true), exportJSDist(false))
 )
 
 export const prod = series(
     parallel(
         series(
-            exportDefault(true,"commonjs"),
-            exportDefault(true,"es2022")
-        ), exportESMDist, exportJSDist),
-        patchFiles(true)
-    )
+            exportDefault(false,"commonjs"),
+            exportDefault(false,"es2022")
+        ), exportESMDist(false), exportJSDist(false)),
+    patchFiles(true)
+)
 
 export const docs = makeDocs()

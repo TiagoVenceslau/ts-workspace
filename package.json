@@ -9,9 +9,8 @@
   },
   "types": "lib/index.d.ts",
   "scripts": {
-    "start:dev": "nodemon",
-    "start": "npm run build && node lib/index.js",
-    "flash-forward-dependencies": "npx npm-check-updates -u",
+    "do-install": "TOKEN=$(cat .token) npm install",
+    "flash-forward-dependencies": "npx npm-check-updates -u && npm run do-install",
     "build": "rimraf ./lib && rimraf ./dist && gulp dev",
     "build:prod": "rimraf ./lib && rimraf ./dist && gulp prod",
     "test": "jest --coverage --testPathPattern=\"/tests/unit\" --passWithNoTests --detectOpenHandles",
@@ -21,6 +20,8 @@
     "release": "./bin/tag-release.sh",
     "clean-publish": "npx clean-publish",
     "coverage": "npm run test:all && jest-coverage-badges --input \"./workdocs/coverage/coverage-summary.json\" --output \"./workdocs/badges\"",
+    "drawings": "for FILE in workdocs/drawings/*.drawio; do echo \"converting $FILE to image...\" && docker run --rm -v $(pwd):/data rlespinasse/drawio-export --format png $FILE; done && cp -rf workdocs/drawings/export/* workdocs/resources/",
+    "uml": "cd workdocs/uml && for FILE in ./*.puml; do docker run --rm -v $(pwd):/work -w /work miy4/plantuml -DPLANTUML_LIMIT_SIZE=8192 -tpng $FILE; done && cd ../.. && cp -fr workdocs/uml/*.png workdocs/resources/",
     "docs": "npx rimraf ./docs && mkdir docs && npm install better-docs taffydb && gulp docs; npm remove better-docs taffydb"
   },
   "repository": {
@@ -29,10 +30,28 @@
   },
   "engines": {
     "node": ">=20.0.0",
-    "npm": ">=8.0.0"
+    "npm": ">=10.0.0"
   },
+  "files": [
+    "lib",
+    "dist"
+  ],
   "keywords": [
+    "plantuml",
+    "mermaid",
+    "uml",
+    "drawio",
+    "mddocs",
+    "md",
+    "jsdoc",
+    "doc",
+    "docs",
+    "documentation",
+    "ci/cd",
+    "ci",
+    "cd",
     "template",
+    "typescript",
     "ts"
   ],
   "author": "TiagoVenceslau",
@@ -46,6 +65,7 @@
     "clean-publish": "^4.3.0",
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
+    "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.1.4",
     "gulp-run-command": "^0.0.10",
     "gulp-sourcemaps": "^3.0.0",

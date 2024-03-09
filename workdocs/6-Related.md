@@ -1,3 +1,3 @@
 ### Related
 
-[![Decorator Validation](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=decorator-validation)](https://github.com/TiagoVenceslau/decorator-validation)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=ts-workspace)](https://github.com/TiagoVenceslau/ts-workspace)
