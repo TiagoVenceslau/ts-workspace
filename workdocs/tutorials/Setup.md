@@ -30,5 +30,6 @@ Run `npm install` (or `npm run do-install` if you have private dependencies and 
 
 If this is the first time you are running this command it will also:
  - update this repository's dependencies to their latest version;
+ - creates a `.token` file which you can leave empty unless you have private dependencies or publish to private registries
  - delete this 'first run script' file and npm call from the `package.json`;
  - try to commit the updated `package.json` and deleted files (having ssh access helps here);

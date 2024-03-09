@@ -71,6 +71,7 @@ Run `npm install` (or `npm run do-install` if you have private dependencies and 
 
 If this is the first time you are running this command it will also:
  - update this repository's dependencies to their latest version;
+ - creates a `.token` file which you can leave empty unless you have private dependencies or publish to private registries
  - delete this 'first run script' file and npm call from the `package.json`;
  - try to commit the updated `package.json` and deleted files (having ssh access helps here);
 ### Releases
@@ -124,6 +125,9 @@ The template comes with ci/cd for :
     - pages: builds the documentation and deploys to github pages
     - release-on-tag: issues a release when the tag does not contain `-no-ci` string
     - publish-on-release: publishes to package registry when the tag does not contain the `-no-ci` string
+    - Requires Variables:
+      - CONSECUTIVE_ACTION_TRIGGER: secret to enable actions to trigger other actions;
+      - NPM_TOKEN: npm/docker registry token
 ## Considerations
  - Setup for a linux based environment (Sorry windows users. use WSL... or just change already);
  - Setup for node 20, but will work at least with 16;
@@ -165,7 +169,7 @@ The produced `docs` folder contains the resulting documentation;
 The following npm scripts are available for development:
   - `preinstall` - will run only on the first install to trigger the dep update. will self delete;
   - `do-install` - sets a `TOKEN` environment variable to the contents of `.token` and runs npm install (useful when you have private dependencies);
-  - `flash-forward-dependencies` - updates all dependencies. Take care, This may not be desirable is some cases;
+  - `flash-forward` - updates all dependencies. Take care, This may not be desirable is some cases;
   - `reset` - updates all dependencies. Take care, This may not be desirable is some cases;
   - `build` - builds the code (via gulp `gulpfile.js`) in development mode (generates `lib` and `dist` folder);
   - `build:prod` - builds the code (via gulp `gulpfile.js`) in production mode (generates `lib` and `dist` folder);
@@ -189,11 +193,13 @@ ts-workspace
 │   .gitignore              <-- Defines files ignored to git
 │   .nmpignore              <-- Defines files ignored by npm
 │   .nmprc                  <-- Defines the Npm registry for this package
+│   .eslint                 <-- linting for the project
 │   .gitlab-ci.yml          <-- Gillab CI/CD file
 │   gulpfile.js             <-- Gulp build scripts. used for building na other features (eg docs)
 │   jest.config.ts          <-- Tests Configuration file
 │   mdCompile.json          <-- md Documentation generation configuration file
 │   jsdocs.json             <-- jsdoc Documentation generation configuration file
+│   Dockerfile              <-- minimal example of a node service Dockerfile
 │   LICENCE.md              <-- Licence disclamer
 │   package.json
 │   package-lock.json

@@ -1,5 +1,5 @@
 {
-  "name": "ts-workspace",
+  "name": "@tvenceslau/ts-workspace",
   "version": "1.2.2",
   "description": "template for ts projects",
   "type": "module",
@@ -9,9 +9,8 @@
   },
   "types": "lib/index.d.ts",
   "scripts": {
-    "preinstall": "./bin/template_setup.sh",
     "do-install": "TOKEN=$(cat .token) npm install",
-    "flash-forward-dependencies": "npx npm-check-updates -u && npm run do-install",
+    "flash-forward": "npx npm-check-updates -u && npm run do-install",
     "reset": "rm -rf * && git checkout . && git pull && npm run do-install",
     "build": "rimraf ./lib && rimraf ./dist && gulp dev",
     "build:prod": "rimraf ./lib && rimraf ./dist && gulp prod",
@@ -24,7 +23,7 @@
     "coverage": "npm run test:all && jest-coverage-badges --input \"./workdocs/coverage/coverage-summary.json\" --output \"./workdocs/badges\"",
     "drawings": "for FILE in workdocs/drawings/*.drawio; do echo \"converting $FILE to image...\" && docker run --rm -v $(pwd):/data rlespinasse/drawio-export --format png $FILE; done && cp -rf workdocs/drawings/export/* workdocs/resources/",
     "uml": "cd workdocs/uml && for FILE in ./*.puml; do docker run --rm -v $(pwd):/work -w /work miy4/plantuml -DPLANTUML_LIMIT_SIZE=8192 -tpng $FILE; done && cd ../.. && cp -fr workdocs/uml/*.png workdocs/resources/",
-    "docs": "npx rimraf ./docs && mkdir docs && npm install better-docs taffydb && gulp docs; npm remove better-docs taffydb"
+    "docs": "npx rimraf ./docs && mkdir docs && npm run do-install -- install better-docs taffydb && gulp docs; npm remove better-docs taffydb"
   },
   "repository": {
     "type": "git",
@@ -89,5 +88,8 @@
     "typescript": "^5.4.2",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "install": "^0.13.0"
   }
 }

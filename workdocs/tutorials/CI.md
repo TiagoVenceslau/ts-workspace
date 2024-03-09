@@ -19,3 +19,6 @@ The template comes with ci/cd for :
     - pages: builds the documentation and deploys to github pages
     - release-on-tag: issues a release when the tag does not contain `-no-ci` string
     - publish-on-release: publishes to package registry when the tag does not contain the `-no-ci` string
+    - Requires Variables:
+      - CONSECUTIVE_ACTION_TRIGGER: secret to enable actions to trigger other actions;
+      - NPM_TOKEN: npm/docker registry token

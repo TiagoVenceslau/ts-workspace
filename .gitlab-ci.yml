@@ -94,7 +94,7 @@ tests:
         - lib/
         - dist/
       policy: pull
-    - key: test-$CI_JOB_IMAGE-$CI_COMMIT_REF_SLUG
+    - key: test-$CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
       paths:
         - workdocs/coverage/
         - workdocs/badges/
@@ -133,10 +133,9 @@ npm-publish:
   script:
     - echo "Attempting to publish package ${NPM_PACKAGE_NAME} version ${NPM_PACKAGE_VERSION} to GitLab's NPM registry."
     - TOKEN=${CI_JOB_TOKEN} npm publish
-  only:
-    - tags
-  except:
-    - branches
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_MESSAGE != /*-no-ci*/'
+      when: always
 
 docker-publish:
   stage: publish
@@ -159,7 +158,7 @@ docker-publish:
     - docker push $CI_REGISTRY/tiagovenceslau/ts-workspace:${IMAGE_NAME}
     - docker push $CI_REGISTRY/tiagovenceslau/ts-workspace:${LATEST_NAME}
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE != /*-no-ci*/'
       changes:
         - Dockerfile
 
@@ -171,7 +170,7 @@ pages:
         - node_modules/
         - .npm/
       policy: pull
-    - key: test-$CI_JOB_IMAGE-$CI_COMMIT_REF_SLUG
+    - key: test-$CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
       paths:
         - workdocs/coverage/
         - workdocs/badges/
@@ -183,9 +182,8 @@ pages:
     paths:
       - public
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE != /*-no-ci*/'
       changes:
         - workdocs/**/*
-    - if: '$CI_COMMIT_TAG'
-    - when: manual
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_MESSAGE != /*-no-ci*/'
   interruptible: true

@@ -6,7 +6,10 @@ on:
     paths:
       - workdocs/**
       - package.json # this way when it changes version, it will rebuild pages
-
+    push:
+      tags:
+        - 'v[0-9]+.[0-9]+.[0-9]+'
+        - '!*-no-ci'
 jobs:
   # Single deploy job no building
   deploy:
@@ -18,6 +21,7 @@ jobs:
       name: github-pages
 #      url: ${{steps.deployment.outputs.page_url}}
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '-no-ci')"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
