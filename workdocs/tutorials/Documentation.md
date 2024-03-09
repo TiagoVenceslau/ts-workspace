@@ -13,7 +13,9 @@ There are 3 steps the generating the documentation (automated in CI):
  - `npm run drawings` - generates png files from each drawing in the `workdocs/drawings` folder and moves them to the `workdocs/resources` folder (requires Docker);
  - `npm run uml` - generates png files from each PlantUML diagram in the `workdocs/uml` folder and moves them to the `workdocs/resources` folder (requires Docker);
  - `npm run docs` - this has several stages, defined under the `gulp docs` (gulpfile.js):
-   - compiles the Readme file via md compile;
+   - compiles the Readme file via md compile:
+     - enables keeping separate files for sections that are then joined into a single file;
+     - Allows keeping specific files in the jsdocs tutorial folder so they show up on their own menu;
    - compiles the documentation from the source code using jsdocs:
      - uses the better docs template with the category and component plugins
      - uses the mermaid jsdoc plugin to embue uml diagrams in the docs

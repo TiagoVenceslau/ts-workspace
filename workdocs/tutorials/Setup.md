@@ -1,5 +1,11 @@
 ### ***Initial Setup***
 
+#### if you use github
+
+create a new project using this one as a template.
+
+clone it `git clone <project>` and navigate to the root folder `cd <project>`
+
 #### If your project has private dependencies or publishes to private npm registries, create an `.npmrc` containing:
 
 ```text

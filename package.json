@@ -9,8 +9,10 @@
   },
   "types": "lib/index.d.ts",
   "scripts": {
+    "preinstall": "./bin/template_setup.sh",
     "do-install": "TOKEN=$(cat .token) npm install",
     "flash-forward-dependencies": "npx npm-check-updates -u && npm run do-install",
+    "reset": "rm -rf * && git checkout . && git pull && npm run do-install",
     "build": "rimraf ./lib && rimraf ./dist && gulp dev",
     "build:prod": "rimraf ./lib && rimraf ./dist && gulp prod",
     "test": "jest --coverage --testPathPattern=\"/tests/unit\" --passWithNoTests --detectOpenHandles",

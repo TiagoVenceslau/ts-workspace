@@ -1,4 +1,4 @@
-![Banner](/workdocs/assets/Banner.png)
+![Banner](./workdocs/assets/Banner.png)
 ## Typescript Template
 
 
@@ -14,10 +14,10 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/ts-workspace.svg)
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-![Line Coverage](workdocks/badges/badge-lines.svg)
-![Function Coverage](workdocks/badges/badge-functions.svg)
-![Statement Coverage](workdocks/badges/badge-statements.svg)
-![Branch Coverage](workdocks/badges/badge-branches.svg)
+![Line Coverage](workdocs/badges/badge-lines.svg)
+![Function Coverage](workdocs/badges/badge-functions.svg)
+![Statement Coverage](workdocs/badges/badge-statements.svg)
+![Branch Coverage](workdocs/badges/badge-branches.svg)
 
 
 ![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)
@@ -39,21 +39,148 @@ Auto setup on first `npm install`
 
 Will accept a `.token` file containing token valid for private npm dependencies, npm and docker registries
 
+### ***Initial Setup***
+
+#### if you use github
+
+create a new project using this one as a template.
+
+clone it `git clone <project>` and navigate to the root folder `cd <project>`
+
+#### If your project has private dependencies or publishes to private npm registries, create an `.npmrc` containing:
+
+```text
+@<scope1>:registry=https://<ADDRESS>.com/api/v4/packages/npm/
+@<scope2>:registry=https://<ADDRESS>.<DOMAIN>.com/api/v4/packages/npm/
+//<ADDRESS>.<DOMAIN>.com/:_authToken=${TOKEN}
+//<ADDRESS>.<DOMAIN>.com/api/v4/groups/<GROUP_ID>/packages/npm/:_authToken=${TOKEN}
+//<ADDRESS>.<DOMAIN>.com/api/v4/projects/<PROJECT_ID>/packages/npm/:_authToken=${TOKEN}
+```
+
+Changing:
+ - <ADDRESS> to `gitlab` or `github` (or other);
+ - <DOMAIN> to your domain if any (if you are using plain gitlab or github use empty and take care to remove the extra `.`);
+ - <GROUP_ID> to your project's group id (if any). otherwise remove this line
+ - <PROJECT_ID> to your project's id
+
+and adding a `.token` file containing your access token to the private registries na repositories.
+
+### Installation
+
+Run `npm install` (or `npm run do-install` if you have private dependencies and a `.token` file) to install the dependencies:
+
+If this is the first time you are running this command it will also:
+ - update this repository's dependencies to their latest version;
+ - delete this 'first run script' file and npm call from the `package.json`;
+ - try to commit the updated `package.json` and deleted files (having ssh access helps here);
+### Releases
+
+This repository automates releases in the following manner:
+
+ - run `npm run release`: you will be prompted with the version number and release message;
+ - it will run `npm run prepare-release` npm script;
+ - it will commit all changes;
+ - it will push the new tag;
+
+If publishing to a private repo's npm registry, make sure you add to your `package.json`:
+
+```json
+{
+  "publishConfig": {
+    "<SCOPE>:registry": " https://<REGISTRY>/api/v4/projects/<PROJECT_ID>/packages/npm/"
+  }
+}
+```
+Where:
+ - `<SCOPE>` - Is the scope of your package;
+ - `<REGISTRY>` - your registry host;
+ - `<PROJECT_ID>` - you project ID number (easy to grab via UI in gitlab or by running `$("meta[name=octolytics-dimension-repository_id]").getAttribute('content')` in the repository page in github);
+
+### Publishing
+
+Normally, when ***no*** `-no-ci` flag is passed in the commit message to the `npm run release` command, publishing will be handled automatically by github/gitlab (triggered by the tag).
+
+When the `-no-ci` flag is passed then you can:
+  - run `npm run publish`. This command assumes
+ 
+## Continuous Integration/Deployment
+
+While the implementationfor gitlab and github are not perfectly matched, they are perfectly usable.
+
+The template comes with ci/cd for :
+  - gitlab (with caching for performance):
+    - stages: 
+      - dependencies: Installs dependencies (on `package-lock.json` changes, caches node modules);
+      - build: builds the code (on `src/*` changes, caches `lib` and `dist`);
+      - test: tests the code (on `src/*`, `test/*` changes, caches `workdocs/{resources, badges, coverage}`);
+      - deploy: 
+        - deploys to package registry on a tag (public|private);
+        - deploys docker image to docker registry (private);
+        - Deploys the documentation to the repository pages;
+  - github:
+    - jest-test: standard `install -> build -> test` loop;
+    - jest-coverage: extracts coverage from the tests;
+    - codeql-analysis: Code quality analisys;
+    - pages: builds the documentation and deploys to github pages
+    - release-on-tag: issues a release when the tag does not contain `-no-ci` string
+    - publish-on-release: publishes to package registry when the tag does not contain the `-no-ci` string
 ## Considerations
  - Setup for a linux based environment (Sorry windows users. use WSL... or just change already);
  - Setup for node 20, but will work at least with 16;
  - Requires docker to build documentation (drawings and PlantUML)
-
 ## Documentation
 
-Please find the complete documentation [here](https://tiagovenceslau.github.io/ts-workspace/)
+The repository proposes a way to generate documentation that while still not ideal, produces verys consitest results.
 
+In the code you see an example on how to properly document each code object, but the overall structure is:
+  - each package is a `@module`;
+  - Classes and Interfaces are categorized into `@category` and `@subcategory`;
+  - All other objects are categorized by `@namespace` and `@memberOf`;
+  - Enums and const are declared as `@const` and both must describe their properties as `@property` (when constants are objects);
+  - Interfaces must declare their methods `@method`;
+
+There are 3 steps the generating the documentation (automated in CI):
+ - `npm run drawings` - generates png files from each drawing in the `workdocs/drawings` folder and moves them to the `workdocs/resources` folder (requires Docker);
+ - `npm run uml` - generates png files from each PlantUML diagram in the `workdocs/uml` folder and moves them to the `workdocs/resources` folder (requires Docker);
+ - `npm run docs` - this has several stages, defined under the `gulp docs` (gulpfile.js):
+   - compiles the Readme file via md compile:
+     - enables keeping separate files for sections that are then joined into a single file;
+     - Allows keeping specific files in the jsdocs tutorial folder so they show up on their own menu;
+   - compiles the documentation from the source code using jsdocs:
+     - uses the better docs template with the category and component plugins
+     - uses the mermaid jsdoc plugin to embue uml diagrams in the docs
+     - includes a nav link to the test coverage results;
+   - copies the jsdoc and mds to `/docs`;
+   - copies the `./workdocs/{drawings, uml, assets, resources}` to `./docs`;
+
+The produced `docs` folder contains the resulting documentation;
 ### Related
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=ts-workspace)](https://github.com/TiagoVenceslau/ts-workspace)
 ### Social
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tiagovenceslau/)
+### Scripts
+
+The following npm scripts are available for development:
+  - `preinstall` - will run only on the first install to trigger the dep update. will self delete;
+  - `do-install` - sets a `TOKEN` environment variable to the contents of `.token` and runs npm install (useful when you have private dependencies);
+  - `flash-forward-dependencies` - updates all dependencies. Take care, This may not be desirable is some cases;
+  - `reset` - updates all dependencies. Take care, This may not be desirable is some cases;
+  - `build` - builds the code (via gulp `gulpfile.js`) in development mode (generates `lib` and `dist` folder);
+  - `build:prod` - builds the code (via gulp `gulpfile.js`) in production mode (generates `lib` and `dist` folder);
+  - `test` - runs unit tests;
+  - `test:integration` - runs it tests;
+  - `test:all` - runs all tests;
+  - `prepare-release` - defines the commands to run prior to a new tag (defaults to building production code, running tests and documentation generation);
+  - `release` - triggers a new tag being pushed to master (via `./bin/tag_release.sh`);
+  - `clean-publish` - cleans the package.json for publishing;
+  - `coverage` - runs all test, calculates coverage and generates badges for readme;
+  - `drawings` - compiles all DrawIO `*.drawio` files in the `workdocs/drawings` folder to png and moves them to the `workdocs/resources` folder;
+  - `uml` - compiles all PlantUML `*.puml` files in the `workdocs/uml` folder to png and moves them to the `workdocs/resources` folder;
+  - `docs` - ;
+  - `` - ;
+
 ### Repository Structure
 
 ```
@@ -114,7 +241,15 @@ If you have bug reports, questions or suggestions please [create a new issue](ht
 
 ## Contributing
 
-I am grateful for any contributions made to this project. Please read [CONTRIBUTING.MD](./workdocs/98-Contributing.md) to get started.
+I am grateful for any contributions made to this project. Please read [this](./workdocs/98-Contributing.md) to get started.
+
+## Supporting
+
+The first and easiest way you can support it is by [Contributing](./workdocs/98-Contributing.md). Even just finding a typo in the documentation is important.
+
+Financial support is always welcome and helps keep the both me and the project alive and healthy.
+
+So if you can, if this project in any way. either by learning something or simply by helping you save precious time, please consider donating.
 
 ## License
 

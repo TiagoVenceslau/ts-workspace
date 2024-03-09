@@ -1,9 +1,10 @@
 ### Scripts
 
-The following npm scripts are available:
+The following npm scripts are available for development:
   - `preinstall` - will run only on the first install to trigger the dep update. will self delete;
   - `do-install` - sets a `TOKEN` environment variable to the contents of `.token` and runs npm install (useful when you have private dependencies);
   - `flash-forward-dependencies` - updates all dependencies. Take care, This may not be desirable is some cases;
+  - `reset` - updates all dependencies. Take care, This may not be desirable is some cases;
   - `build` - builds the code (via gulp `gulpfile.js`) in development mode (generates `lib` and `dist` folder);
   - `build:prod` - builds the code (via gulp `gulpfile.js`) in production mode (generates `lib` and `dist` folder);
   - `test` - runs unit tests;

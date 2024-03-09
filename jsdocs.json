@@ -15,7 +15,7 @@
         "include": [
             "./src"
         ],
-        "exclude": [],
+        "exclude": ["cli.(ts|js)"],
         "includePattern": "\\.(jsx|js|ts|tsx)$"
     },
     "tags": {
@@ -23,6 +23,9 @@
         "dictionaries": ["jsdoc","closure"]
     },
     "templates": {
+        "default": {
+            "useLongnameInNav": true
+        },
         "better-docs": {
             "name": "ts-template",
             "title": "TypeScript workspace template",

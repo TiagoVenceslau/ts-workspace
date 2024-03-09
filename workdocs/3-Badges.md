@@ -10,10 +10,10 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/ts-workspace.svg)
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-![Line Coverage](workdocks/badges/badge-lines.svg)
-![Function Coverage](workdocks/badges/badge-functions.svg)
-![Statement Coverage](workdocks/badges/badge-statements.svg)
-![Branch Coverage](workdocks/badges/badge-branches.svg)
+![Line Coverage](workdocs/badges/badge-lines.svg)
+![Function Coverage](workdocs/badges/badge-functions.svg)
+![Statement Coverage](workdocs/badges/badge-statements.svg)
+![Branch Coverage](workdocs/badges/badge-branches.svg)
 
 
 ![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)

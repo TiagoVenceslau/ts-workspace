@@ -116,7 +116,7 @@ tests:
   coverage: '/^Statements.*?:.*?(\d+\.\d+)%/'
   interruptible: true
 
-npm-deploy:
+npm-publish:
   stage: publish
   needs: ["tests", "build"]
   cache:
@@ -137,6 +137,31 @@ npm-deploy:
     - tags
   except:
     - branches
+
+docker-publish:
+  stage: publish
+  needs: [ "tests", "build" ]
+  image: docker:20.10.21-dind
+  services:
+    - docker:20.10.21-dind
+  variables:
+    BASE_NAME: ts-workspace
+    LATEST_NAME: ${BASE_NAME}-latest
+  before_script:
+    - apk add jq
+    - VERSION=$(cat package.json | jq -r '.version')
+    - IMAGE_NAME="${IMAGE_BASE_NAME}-${VERSION}"
+    - echo "Image name is ${IMAGE_NAME}"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - echo "Building docker image to be published on $CI_REGISTRY."
+    - docker build --network host -t $CI_REGISTRY/tiagovenceslau/ts-workspace:${IMAGE_NAME} -t $CI_REGISTRY/tiagovenceslau/ts-workspace:${LATEST_NAME} -f Dockerfile .
+    - docker push $CI_REGISTRY/tiagovenceslau/ts-workspace:${IMAGE_NAME}
+    - docker push $CI_REGISTRY/tiagovenceslau/ts-workspace:${LATEST_NAME}
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - Dockerfile
 
 pages:
   stage: publish

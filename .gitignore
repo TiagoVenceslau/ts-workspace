@@ -2,7 +2,12 @@
 /dist
 /docs
 /workdocs/coverage
-/workdocs/resources
+/workdocs/resources/*
+!/workdocs/resources/.gitlock
+/workdocs/drawings/*
+/workdocs/uml/*
+!/workdocs/drawings/*.drawio
+!/workdocs/uml/*.puml
 /.idea
 !/.idea/runConfigurations
 /.token
