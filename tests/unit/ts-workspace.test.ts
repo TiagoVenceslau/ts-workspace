@@ -1,12 +1,12 @@
 import {ChildClass, Class, complexFunction, something} from "../../src";
 
-describe(`Type Script Workspace test`, function(){
-  it(`runs functions`, function(){
-    expect(complexFunction()).toBe('Hello World');
+describe(`Type Script Workspace test`, function () {
+  it(`runs functions`, function () {
+    expect(complexFunction()).toBe('Hello Worlddefault');
   });
 
-  it(`Instantiates Classes`, function(){
-    const a = new Class(1,"string");
+  it(`Instantiates Classes`, function () {
+    const a = new Class(1, "string");
     expect(a).toBeDefined();
     expect(a.method).rejects.toBeInstanceOf(Error);
     expect(Class.method).toThrow()

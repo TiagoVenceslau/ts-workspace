@@ -78,10 +78,11 @@ If this is the first time you are running this command it will also:
 
 This repository automates releases in the following manner:
 
- - run `npm run release`: you will be prompted with the version number and release message;
- - it will run `npm run prepare-release` npm script;
- - it will commit all changes;
- - it will push the new tag;
+- run `npm run release <major|minor|patch|version> <message>`:
+  - if arguments are missing you will be prompted for them;
+- it will run `npm run prepare-release` npm script;
+- it will commit all changes;
+- it will push the new tag;
 
 If publishing to a private repo's npm registry, make sure you add to your `package.json`:
 
@@ -92,17 +93,26 @@ If publishing to a private repo's npm registry, make sure you add to your `packa
   }
 }
 ```
+
 Where:
- - `<SCOPE>` - Is the scope of your package;
- - `<REGISTRY>` - your registry host;
- - `<PROJECT_ID>` - you project ID number (easy to grab via UI in gitlab or by running `$("meta[name=octolytics-dimension-repository_id]").getAttribute('content')` in the repository page in github);
+
+- `<SCOPE>` - Is the scope of your package;
+- `<REGISTRY>` - your registry host;
+- `<PROJECT_ID>` - you project ID number (easy to grab via UI in gitlab or by
+  running `$("meta[name=octolytics-dimension-repository_id]").getAttribute('content')` in the repository page in github)
+  ;
 
 ### Publishing
 
-Normally, when ***no*** `-no-ci` flag is passed in the commit message to the `npm run release` command, publishing will be handled automatically by github/gitlab (triggered by the tag).
+Unless the `-no-ci` flag is passed in the commit message to the `npm run release` command, publishing will be handled
+automatically by github/gitlab (triggered by the tag).
 
 When the `-no-ci` flag is passed then you can:
-  - run `npm run publish`. This command assumes
+
+- run `npm run publish`. This command assumes :
+  - you have previously run the `npm run release`;
+  - you have you publishing properly configured in `npmrc` and `package.json`;
+  - The token for any special access required is stored in the `.token` file;
  
 ## Continuous Integration/Deployment
 
@@ -167,23 +177,29 @@ The produced `docs` folder contains the resulting documentation;
 ### Scripts
 
 The following npm scripts are available for development:
-  - `preinstall` - will run only on the first install to trigger the dep update. will self delete;
-  - `do-install` - sets a `TOKEN` environment variable to the contents of `.token` and runs npm install (useful when you have private dependencies);
-  - `flash-forward` - updates all dependencies. Take care, This may not be desirable is some cases;
-  - `reset` - updates all dependencies. Take care, This may not be desirable is some cases;
-  - `build` - builds the code (via gulp `gulpfile.js`) in development mode (generates `lib` and `dist` folder);
-  - `build:prod` - builds the code (via gulp `gulpfile.js`) in production mode (generates `lib` and `dist` folder);
-  - `test` - runs unit tests;
-  - `test:integration` - runs it tests;
-  - `test:all` - runs all tests;
-  - `prepare-release` - defines the commands to run prior to a new tag (defaults to building production code, running tests and documentation generation);
-  - `release` - triggers a new tag being pushed to master (via `./bin/tag_release.sh`);
-  - `clean-publish` - cleans the package.json for publishing;
-  - `coverage` - runs all test, calculates coverage and generates badges for readme;
-  - `drawings` - compiles all DrawIO `*.drawio` files in the `workdocs/drawings` folder to png and moves them to the `workdocs/resources` folder;
-  - `uml` - compiles all PlantUML `*.puml` files in the `workdocs/uml` folder to png and moves them to the `workdocs/resources` folder;
-  - `docs` - ;
-  - `` - ;
+
+- `preinstall` - will run only on the first install to trigger the dep update. will self delete;
+- `do-install` - sets a `TOKEN` environment variable to the contents of `.token` and runs npm install (useful when you
+  have private dependencies);
+- `flash-forward` - updates all dependencies. Take care, This may not be desirable is some cases;
+- `reset` - updates all dependencies. Take care, This may not be desirable is some cases;
+- `build` - builds the code (via gulp `gulpfile.js`) in development mode (generates `lib` and `dist` folder);
+- `build:prod` - builds the code (via gulp `gulpfile.js`) in production mode (generates `lib` and `dist` folder);
+- `test` - runs unit tests;
+- `test:integration` - runs it tests;
+- `test:all` - runs all tests;
+- `lint` - runs es lint on the code folder;
+- `lint-fix` - tries to auto-fix the code folder;
+- `prepare-release` - defines the commands to run prior to a new tag (defaults to linting, building production code,
+  running tests and documentation generation);
+- `release` - triggers a new tag being pushed to master (via `./bin/tag_release.sh`);
+- `clean-publish` - cleans the package.json for publishing;
+- `coverage` - runs all test, calculates coverage and generates badges for readme;
+- `drawings` - compiles all DrawIO `*.drawio` files in the `workdocs/drawings` folder to png and moves them to
+  the `workdocs/resources` folder;
+- `uml` - compiles all PlantUML `*.puml` files in the `workdocs/uml` folder to png and moves them to
+  the `workdocs/resources` folder;
+- `docs` - compiles all the coverage, drawings, uml, jsdocs and md docs into a readable web page under `./docs`;
 
 ### Repository Structure
 
@@ -191,9 +207,10 @@ The following npm scripts are available for development:
 ts-workspace
 │
 │   .gitignore              <-- Defines files ignored to git
-│   .nmpignore              <-- Defines files ignored by npm
+│   .npmignore              <-- Defines files ignored by npm
 │   .nmprc                  <-- Defines the Npm registry for this package
-│   .eslint                 <-- linting for the project
+│   .eslintrc.cjs           <-- linting for the project
+│   .prettier.config.cjs    <-- Code style for the project
 │   .gitlab-ci.yml          <-- Gillab CI/CD file
 │   gulpfile.js             <-- Gulp build scripts. used for building na other features (eg docs)
 │   jest.config.ts          <-- Tests Configuration file
