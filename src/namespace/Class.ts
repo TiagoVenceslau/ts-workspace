@@ -23,10 +23,9 @@
  *
  * @category Namespace
  */
-import {Interface} from "./Interface";
+import { Interface } from "./Interface";
 
-export class Class implements Interface{
-
+export class Class implements Interface {
   /**
    * @summary class property summary
    * @description class property description
@@ -38,6 +37,7 @@ export class Class implements Interface{
   private prop: any;
 
   constructor(arg1: any, arg2: string) {
+    console.log(arg1, arg2);
   }
 
   /**
@@ -46,8 +46,8 @@ export class Class implements Interface{
    *
    * @throws {Error} it always throws an error
    */
-  async method<T>(): Promise<string>{
-    throw new Error("error")
+  async method<T>(): Promise<string> {
+    throw new Error("error" as T as unknown as string);
   }
 
   /**
@@ -56,7 +56,7 @@ export class Class implements Interface{
    *
    * @throws {Error} it always throws an error
    */
-  static method(){
-    throw new Error("error")
+  static method() {
+    throw new Error("error");
   }
 }

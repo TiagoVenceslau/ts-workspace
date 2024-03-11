@@ -11,3 +11,4 @@
 /.idea
 !/.idea/runConfigurations
 /.token
+/node_modules

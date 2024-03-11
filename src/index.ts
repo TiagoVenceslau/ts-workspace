@@ -1,6 +1,5 @@
-
-export * from './utils';
-export * from './namespace';
+export * from "./utils";
+export * from "./namespace";
 
 /**
  * @summary Module summary
@@ -21,4 +20,4 @@ export * from './namespace';
  * @const VERSION
  * @memberOf module:ts-workspace
  */
-export const VERSION = "##VERSION##"
+export const VERSION = "##VERSION##";

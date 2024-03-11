@@ -1,5 +1,5 @@
-import {Class} from "../Class";
-import {Type} from "../type";
+import { Class } from "../Class";
+import { Type } from "../type";
 
 /**
  * @summary function summary

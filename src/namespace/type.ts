@@ -6,4 +6,4 @@
  *
  * @memberOf module:ts-workspace.Namespace
  */
-export type Type<T> = string | T
+export type Type<T> = string | T;

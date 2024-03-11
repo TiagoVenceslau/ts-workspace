@@ -15,5 +15,5 @@ export interface Interface {
    *
    * @param {T} arg1
    */
-  method<T>(arg1: T): Promise<string>
+  method<T>(arg1: T): Promise<string>;
 }

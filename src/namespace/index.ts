@@ -1,7 +1,6 @@
 export * from "./Class";
 export * from "./Interface";
-export * from "./children"
-
+export * from "./children";
 
 /**
  * @summary child namespace summary

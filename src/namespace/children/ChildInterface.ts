@@ -3,7 +3,7 @@
  * @description Interface description
  * @category Namespace
  */
-import {Interface} from "../Interface";
+import { Interface } from "../Interface";
 /**
  * @summary Interface summary
  * @description Interface description
@@ -22,5 +22,5 @@ export interface ChildInterface<T> extends Interface {
    *
    * @param {T} arg1
    */
-  method2(arg1: T): Promise<string>
+  method2(arg1: T): Promise<string>;
 }

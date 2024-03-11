@@ -6,5 +6,5 @@
  * @memberOf module:ts-workspace.Namespace.ChildNameSpace
  */
 export enum Enum {
-  OPTION1 = "something"
+  OPTION1 = "something",
 }
