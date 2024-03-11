@@ -15,7 +15,7 @@ module.exports = {
         node: true,
         jest: true,
     },
-    ignorePatterns: ['/*', '!/src'],
+    ignorePatterns: ['/*', '!/src', "*.md"],
     rules: {
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
