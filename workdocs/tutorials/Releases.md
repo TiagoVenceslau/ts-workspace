@@ -2,7 +2,7 @@
 
 This repository automates releases in the following manner:
 
-- run `npm run release <major|minor|patch|version> <message>`:
+- run `npm run release -- <major|minor|patch|version> <message>`:
   - if arguments are missing you will be prompted for them;
 - it will run `npm run prepare-release` npm script;
 - it will commit all changes;
