@@ -43,16 +43,19 @@ function ask(){
     echo "$real_answer"
 }
 
-TAG="$1"
+if [[ $# -ne 0 ]];then
+  TAG="$1"
+  if [[ -z "$TAG" ]];then
+    shift
+  fi
 
-shift
-
-MESSAGE="$*"
+  MESSAGE="$*"
+fi
 
 echo "Preparing Release... "
 npm run prepare-release
 
-if [[ "$TAG" == "" ]];then
+if [[ -z "$TAG" ]];then
   echo "Listing existing tags..."
   git tag --sort=-taggerdate | head -n 5
   while [[ "$TAG" == "" || ! "${TAG}" =~ ^v[0-9]+\.[0-9]+.[0-9]+(\-[0-9a-zA-Z\-]+)?$ ]]; do
@@ -60,7 +63,7 @@ if [[ "$TAG" == "" ]];then
   done
 fi
 
-if [[ "$MESSAGE" == "" ]];then
+if [[ -z "$MESSAGE" ]];then
   MESSAGE=$(ask "Tag Message")
 fi
 
