@@ -1,7 +1,8 @@
 ![Banner](./workdocs/assets/Banner.png)
 ## Typescript Template
 
-
+***This template is being discontinued in favor of the Decaf project!***
+All further updates will happen there
 
 ![Licence](https://img.shields.io/github/license/TiagoVenceslau/ts-workspace.svg?style=plastic)
 ![GitHub language count](https://img.shields.io/github/languages/count/TiagoVenceslau/ts-workspace?style=plastic)
