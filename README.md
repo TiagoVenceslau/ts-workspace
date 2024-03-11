@@ -1,18 +1,17 @@
 ![Banner](./workdocs/assets/Banner.png)
 ## Typescript Template
 
-***This template is being discontinued in favor of the Decaf project!***
-All further updates will happen there
 
-![Licence](https://img.shields.io/github/license/TiagoVenceslau/ts-workspace.svg?style=plastic)
-![GitHub language count](https://img.shields.io/github/languages/count/TiagoVenceslau/ts-workspace?style=plastic)
-![GitHub top language](https://img.shields.io/github/languages/top/TiagoVenceslau/ts-workspace?style=plastic)
-[![Tests](https://github.com/TiagoVenceslau/ts-workspace/actions/workflows/jest-test.yaml/badge.svg)](http://www.pdmfc.com)
-[![CodeQL](https://github.com/starnowski/posmulten/workflows/CodeQL/badge.svg)](https://github.com/TiagoVenceslau/ts-workspace/actions?query=workflow%3ACodeQL)
 
-![Open Issues](https://img.shields.io/github/issues/TiagoVenceslau/ts-workspace.svg)
-![Closed Issues](https://img.shields.io/github/issues-closed/TiagoVenceslau/ts-workspace.svg)
-![Pull Requests](https://img.shields.io/github/issues-pr-closed/TiagoVenceslau/ts-workspace.svg)
+![Licence](https://img.shields.io/github/license/decaf-ts/ts-workspace.svg?style=plastic)
+![GitHub language count](https://img.shields.io/github/languages/count/decaf-ts/ts-workspace?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/decaf-ts/ts-workspace?style=plastic)
+[![Tests](https://github.com/decaf-ts/ts-workspace/actions/workflows/jest-test.yaml/badge.svg)](http://www.pdmfc.com)
+[![CodeQL](https://github.com/starnowski/posmulten/workflows/CodeQL/badge.svg)](https://github.com/decaf-ts/ts-workspace/actions?query=workflow%3ACodeQL)
+
+![Open Issues](https://img.shields.io/github/issues/decaf-ts/ts-workspace.svg)
+![Closed Issues](https://img.shields.io/github/issues-closed/decaf-ts/ts-workspace.svg)
+![Pull Requests](https://img.shields.io/github/issues-pr-closed/decaf-ts/ts-workspace.svg)
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
 ![Line Coverage](workdocs/badges/badge-lines.svg)
@@ -21,9 +20,9 @@ All further updates will happen there
 ![Branch Coverage](workdocs/badges/badge-branches.svg)
 
 
-![Forks](https://img.shields.io/github/forks/TiagoVenceslau/ts-workspace.svg)
-![Stars](https://img.shields.io/github/stars/TiagoVenceslau/ts-workspace.svg)
-![Watchers](https://img.shields.io/github/watchers/TiagoVenceslau/ts-workspace.svg)
+![Forks](https://img.shields.io/github/forks/decaf-ts/ts-workspace.svg)
+![Stars](https://img.shields.io/github/stars/decaf-ts/ts-workspace.svg)
+![Watchers](https://img.shields.io/github/watchers/decaf-ts/ts-workspace.svg)
 
 ![Node Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbadges%2Fshields%2Fmaster%2Fpackage.json&label=Node&query=$.engines.node&colorB=blue)
 ![NPM Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbadges%2Fshields%2Fmaster%2Fpackage.json&label=NPM&query=$.engines.npm&colorB=purple)
@@ -185,10 +184,10 @@ There are 3 steps the generating the documentation (automated in CI):
 The produced `docs` folder contains the resulting documentation;
 ### Related
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TiagoVenceslau&repo=ts-workspace)](https://github.com/TiagoVenceslau/ts-workspace)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=decaf-ts&repo=ts-workspace)](https://github.com/decaf-ts/ts-workspace)
 ### Social
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tiagovenceslau/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/decaf-ts/)
 ### Scripts
 
 The following npm scripts are available for development:
@@ -275,7 +274,7 @@ ts-workspace
 
 ## Getting help
 
-If you have bug reports, questions or suggestions please [create a new issue](https://github.com/tiagovenceslau/ts-workspace/issues/new/choose).
+If you have bug reports, questions or suggestions please [create a new issue](https://github.com/decaf-ts/ts-workspace/issues/new/choose).
 
 ## Contributing
 
