@@ -7,6 +7,17 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "./workdocs/coverage",
   collectCoverageFrom: ['src/**/*.{ts,jsx}'],
+  coveragePathIgnorePatterns: [
+    "src/cli.ts"
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 70,
+      functions: 100,
+      lines: 80,
+      statements: 90
+    }
+  },
   coverageReporters: [
     "json-summary",
     "text-summary",
