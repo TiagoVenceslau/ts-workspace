@@ -68,6 +68,8 @@ build:
   script:
     - npm run build:prod
   rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE =~ /-no-ci/'
+      when: never
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - src/**/*
@@ -100,6 +102,8 @@ tests:
         - workdocs/badges/
       policy: push
   rules:
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE =~ /-no-ci/'
+      when: never
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - src/**/*
@@ -134,7 +138,9 @@ npm-publish:
     - echo "Attempting to publish package ${NPM_PACKAGE_NAME} version ${NPM_PACKAGE_VERSION} to GitLab's NPM registry."
     - TOKEN=${CI_JOB_TOKEN} npm publish
   rules:
-    - if: '$CI_COMMIT_TAG && $CI_COMMIT_MESSAGE != /*-no-ci*/'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE =~ /-no-ci/'
+      when: never
+    - if: '$CI_COMMIT_TAG'
       when: always
 
 docker-publish:
@@ -158,7 +164,9 @@ docker-publish:
     - docker push $CI_REGISTRY/decaf-ts/ts-workspace:${IMAGE_NAME}
     - docker push $CI_REGISTRY/decaf-ts/ts-workspace:${LATEST_NAME}
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE != /*-no-ci*/'
+    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE =~ /-no-ci/'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - Dockerfile
 
@@ -182,8 +190,8 @@ pages:
     paths:
       - public
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $CI_COMMIT_MESSAGE != /*-no-ci*/'
+    - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - workdocs/**/*
-    - if: '$CI_COMMIT_TAG && $CI_COMMIT_MESSAGE != /*-no-ci*/'
+    - if: '$CI_COMMIT_TAG'
   interruptible: true
