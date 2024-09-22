@@ -53,13 +53,6 @@ delete o["scripts"]["preinstall"];
 console.log(JSON.stringify(o, null, 2));
 EOF
 
-# Replace all references to
-node<<EOF > _.json && mv _.json package.json
-var o = $(cat package.json);
-delete o["scripts"]["preinstall"];
-console.log(JSON.stringify(o, null, 2));
-EOF
-
 # create the token file
 touch .token
 
