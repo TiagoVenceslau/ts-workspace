@@ -98,8 +98,5 @@
     "typescript": "^5.4.2",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^7.0.0"
-  },
-  "dependencies": {
-    "install": "^0.13.0"
   }
 }
