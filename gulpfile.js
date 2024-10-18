@@ -21,18 +21,17 @@ let { name, version } = pkg;
 if (name.includes("/")) name = name.split("/")[1]; // for scoped packages
 const VERSION_STRING = "##VERSION##";
 
-function patchFiles(isDev) {
-  return function patchFile() {
-    const doPatch = (basePath) => {
+function patchFiles() {
+  const doPatch = (basePath) => {
+    return function doPatch() {
       const jsFiles = [`${basePath}/**/*.js`];
       return src(jsFiles)
         .pipe(replace(VERSION_STRING, `${version}`))
         .pipe(dest(`${basePath}/`));
     };
-
-    if (!isDev) return doPatch("dist");
-    return doPatch("lib");
   };
+
+  return series(doPatch("lib"), doPatch("dist"));
 }
 
 function getWebpackConfig(isESM, isDev) {
@@ -217,10 +216,13 @@ function makeDocs() {
   );
 }
 
-export const dev = parallel(
-  series(exportDefault(true, "commonjs"), exportDefault(true, "es2022")),
-  exportESMDist(true),
-  exportJSDist(true)
+export const dev = series(
+  parallel(
+    series(exportDefault(true, "commonjs"), exportDefault(true, "es2022")),
+    exportESMDist(true),
+    exportJSDist(true)
+  ),
+  patchFiles()
 );
 
 export const prod = series(
@@ -229,7 +231,7 @@ export const prod = series(
     exportESMDist(false),
     exportJSDist(false)
   ),
-  patchFiles(true)
+  patchFiles()
 );
 
 export const docs = makeDocs();
