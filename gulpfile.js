@@ -12,7 +12,7 @@ import named from "vinyl-named";
 import replace from "gulp-replace";
 import webpack from "webpack-stream";
 import run from "gulp-run-command";
-import * as process from "node:process";
+import process from "node:process";
 
 import pkg from "./package.json" assert { type: "json" };
 import fs from "fs";
@@ -164,12 +164,16 @@ function exportBundles(isEsm, isDev) {
     .pipe(dest(`./dist${isEsm ? "/esm" : ""}`));
 }
 
-function exportESMDist() {
-  return exportBundles(true, false);
+function exportESMDist(isDev = false) {
+  return function exportJSDist() {
+    return exportBundles(true, isDev);
+  };
 }
 
-function exportJSDist() {
-  return exportBundles(false, false);
+function exportJSDist(isDev = false) {
+  return function exportJSDist() {
+    return exportBundles(false, isDev);
+  };
 }
 
 function makeDocs() {
@@ -194,7 +198,7 @@ function makeDocs() {
   return series(
     compileReadme,
     compileDocs,
-    parallel(
+    series(
       ...[
         {
           src: "workdocs/assets",
@@ -213,16 +217,17 @@ function makeDocs() {
   );
 }
 
-export const dev = series(
-  exportDefault(true, "commonjs"),
-  exportDefault(true, "es2022")
+export const dev = parallel(
+  series(exportDefault(true, "commonjs"), exportDefault(true, "es2022")),
+  exportESMDist(true),
+  exportJSDist(true)
 );
 
 export const prod = series(
   parallel(
     series(exportDefault(true, "commonjs"), exportDefault(true, "es2022")),
-    exportESMDist,
-    exportJSDist
+    exportESMDist(false),
+    exportJSDist(false)
   ),
   patchFiles(true)
 );
