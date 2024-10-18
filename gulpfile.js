@@ -169,7 +169,7 @@ function makeDocs(){
     const copyFiles = (source, destination) => {
         return function copyFiles(){
             try {
-                return src(source + "/**/*" , { base: source }).pipe(dest(destination));
+                return src(source + "/**/*" , { base: source, encoding: false }).pipe(dest(destination));
             } catch (e){
                 throw e
             }
