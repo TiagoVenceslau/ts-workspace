@@ -90,6 +90,7 @@
     "jsdoc-mermaid": "^1.0.0",
     "markdown-include": "^0.4.3",
     "merge-stream": "^2.0.0",
+    "minimist": "^0.2.4",
     "nodemon": "^3.1.7",
     "npm-check-updates": "^17.1.4",
     "prettier": "3.3.3",
