@@ -63,6 +63,8 @@ if [[ $(git status --porcelain) ]]; then
   git add .
   git commit -m "refs #1 - initial commit"
   git push
+  git config --unset user.name
+  git config --unset user.email
 fi
 
 # delete this file

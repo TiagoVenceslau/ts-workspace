@@ -6,8 +6,8 @@
  *   sequenceDiagram
  *     Alice ->> Bob: Hello Bob, how are you?
  *     Bob-->>John: How about you John?
- *     Bob--x Alice: I am good thanks!
- *     Bob-x John: I am good thanks!
+ *     Bob--x Alice: I am good, thanks!
+ *     Bob-x John: I am good, thanks!
  *     Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
  *
  *     Bob-->Alice: Checking with John...
@@ -21,7 +21,7 @@
  * @class Class
  * @implements Interface
  *
- * @category Namespace
+ * @memberOf module:ts-workspace.Namespace
  */
 import { Interface } from "./Interface";
 
@@ -34,9 +34,9 @@ export class Class implements Interface {
    *
    * @private
    */
-  private prop: any;
+  private prop!: unknown;
 
-  constructor(arg1: any, arg2: string) {
+  constructor(arg1: unknown, arg2: string) {
     console.log(arg1, arg2);
   }
 

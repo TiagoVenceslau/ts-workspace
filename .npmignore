@@ -1,4 +1,5 @@
 .github
+.run
 /bin
 /src
 /docs

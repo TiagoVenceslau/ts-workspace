@@ -29,13 +29,13 @@
   },
   "templates": {
     "default": {
-      "useLongnameInNav": true
+      "useLongnameInNav": false
     },
     "better-docs": {
       "name": "ts-template",
       "title": "TypeScript workspace template",
       "hideGenerator": true,
-      "useLongnameInNav": true,
+      "useLongnameInNav": false,
       "navLinks": [
         {
           "label": "Test Coverage",
@@ -53,12 +53,12 @@
     },
     "cleverLinks": true,
     "monospaceLinks": true,
-    "useLongnameInNav": true,
+    "useLongnameInNav": false,
     "search": true
   },
   "opts": {
     "encoding": "utf-8",
-    "useLongnameInNav": true,
+    "useLongnameInNav": false,
     "template": "./node_modules/better-docs",
     "destination": "./docs/",
     "readme": "./README.md",

@@ -4,14 +4,12 @@
  *
  * @interface Interface
  *
- * @category Namespace
+ * @memberOf module:ts-workspace.Namespace
  */
 export interface Interface {
   /**
    * @summary Interface method summary
    * @description Interface method description
-   *
-   * @typedef T
    *
    * @param {T} arg1
    */

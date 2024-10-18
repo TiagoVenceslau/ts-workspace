@@ -18,6 +18,6 @@
  * @function helloWorld
  * @memberOf module:ts-workspace
  */
-export function complexFunction(arg1: string = "default") {
-  return `Hello World` + arg1;
+export function complexFunction(arg1: string = "default",) {
+  return "Hello World" + arg1;
 }

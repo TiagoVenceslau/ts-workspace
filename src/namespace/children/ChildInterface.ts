@@ -13,7 +13,7 @@ import { Interface } from "../Interface";
  * @interface ChildInterface
  * @extends Interface
  *
- * @category ChildNamespace
+ * @memberOf module:ts-workspace.Namespace.ChildNameSpace
  */
 export interface ChildInterface<T> extends Interface {
   /**

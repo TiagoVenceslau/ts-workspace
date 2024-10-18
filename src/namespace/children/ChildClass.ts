@@ -5,8 +5,6 @@ import { ChildInterface } from "./ChildInterface";
  * @summary child class summary
  * @description child class description
  *
- * @typedef T generic type description
- *
  * @param {T} arg1 constructor argument description
  * @param {string} [arg2] optional constructor argument description
  *
@@ -14,7 +12,7 @@ import { ChildInterface } from "./ChildInterface";
  * @extends Class
  * @implements ChildInterface<T>
  *
- * @category Namespace
+ * @memberOf module:ts-workspace.Namespace.ChildNameSpace
  */
 export class ChildClass<T> extends Class implements ChildInterface<T> {
   /**
@@ -35,8 +33,6 @@ export class ChildClass<T> extends Class implements ChildInterface<T> {
   /**
    * @summary overridden class method summary
    * @description overridden class method description
-   *
-   * @typedef V generic type description
    *
    * @throws {Error} always
    */
