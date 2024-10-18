@@ -1,6 +1,6 @@
 {
   "name": "@decaf-ts/ts-workspace",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "template for ts projects",
   "type": "module",
   "exports": {
