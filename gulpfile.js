@@ -188,15 +188,15 @@ function makeDocs(){
     return series(compileReadme, compileDocs, parallel(...[
             {
                 src: "workdocs/assets",
-                dest:  "./docs/assets"
+                dest:  "./docs/workdocs/assets"
             },
             {
                 src: "workdocs/coverage",
-                dest:  "./docs/coverage"
+                dest:  "./docs/workdocs/coverage"
             },
             {
                 src: "workdocs/badges",
-                dest:  "./docs/badges"
+                dest:  "./docs/workdocs/badges"
             }
         ].map(e => copyFiles(e.src, e.dest)))
     )
