@@ -207,10 +207,6 @@ function makeDocs() {
           src: "workdocs/coverage",
           dest: "./docs/workdocs/coverage",
         },
-        {
-          src: "workdocs/badges",
-          dest: "./docs/workdocs/badges",
-        },
       ].map((e) => copyFiles(e.src, e.dest))
     )
   );

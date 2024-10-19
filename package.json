@@ -21,10 +21,10 @@
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "test:circular": "dpdm -T --no-warning --no-tree ./src/index.ts",
-    "prepare-release": "npm run lint-fix && npm run build:prod && npm run test && npm run docs",
+    "prepare-release": "npm run lint-fix && npm run build:prod && npm run coverage && npm run docs",
     "release": "./bin/tag-release.sh",
     "clean-publish": "npx clean-publish",
-    "coverage": "npm run test:all && jest-coverage-badges --input \"./workdocs/coverage/coverage-summary.json\" --output \"./workdocs/badges\"",
+    "coverage": "npm run test:all && cd workdocs && jest-coverage-badges",
     "drawings": "for FILE in workdocs/drawings/*.drawio; do echo \"converting $FILE to image...\" && docker run --rm -v $(pwd):/data rlespinasse/drawio-export --format png $FILE; done && cp -rf workdocs/drawings/export/* workdocs/resources/",
     "uml": "cd workdocs/uml && for FILE in ./*.puml; do docker run --rm -v $(pwd):/work -w /work miy4/plantuml -DPLANTUML_LIMIT_SIZE=8192 -tpng $FILE; done && cd ../.. && cp -fr workdocs/uml/*.png workdocs/resources/",
     "docs": "npx rimraf ./docs && mkdir docs && npm run do-install -- better-docs taffydb && gulp docs; npm remove better-docs taffydb"
