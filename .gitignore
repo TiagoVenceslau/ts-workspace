@@ -2,10 +2,6 @@
 /dist
 /docs
 /workdocs/coverage
-/workdocs/resources/*
-!/workdocs/resources/.gitlock
-/workdocs/badges/*
-!/workdocs/badges/.gitlock
 /workdocs/drawings/*
 /workdocs/uml/*
 !/workdocs/drawings/*.drawio
@@ -13,4 +9,5 @@
 /.idea
 !/.idea/runConfigurations
 /.token
+/.npmtoken
 /node_modules
