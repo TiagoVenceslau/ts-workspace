@@ -24,7 +24,7 @@ const VERSION_STRING = "##VERSION##";
 function patchFiles() {
   const doPatch = (basePath) => {
     return function doPatch() {
-      const jsFiles = [`${basePath}/**/*.js`];
+      const jsFiles = [`${basePath}/**/*.?(c|m)js`];
       return src(jsFiles)
         .pipe(replace(VERSION_STRING, `${version}`))
         .pipe(dest(`${basePath}/`));
