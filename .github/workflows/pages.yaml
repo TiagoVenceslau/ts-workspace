@@ -5,6 +5,7 @@ on:
     branches: [ master, main ]
     paths:
       - workdocs/**
+      - .github/workflows/pages.yaml
       - package.json # this way when it changes version, it will rebuild pages
 
 jobs:
