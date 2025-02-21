@@ -10,7 +10,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "do-install": "TOKEN=$(cat .token) npm install",
-    "preinstall": "./bin/template_setup.sh",
+    "preinstall": "chmod +x ./bin/template_setup.sh && ./bin/template_setup.sh",
     "flash-forward": "npx npm-check-updates -u && npm run do-install",
     "reset": "rm -rf * && git checkout . && git pull && npm run do-install",
     "build": "rimraf ./lib && rimraf ./dist && gulp dev",
