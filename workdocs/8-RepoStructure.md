@@ -6,20 +6,25 @@ ts-workspace
 │   .gitignore              <-- Defines files ignored to git
 │   .npmignore              <-- Defines files ignored by npm
 │   .nmprc                  <-- Defines the Npm registry for this package
-│   .eslintrc.cjs           <-- linting for the project
-│   .prettier.config.cjs    <-- Code style for the project
-│   .gitlab-ci.yml          <-- Gillab CI/CD file
+│   .nmptoken               <-- Defines access token for the Npm registry for this package
+│   .prettierrc             <-- style definitions for the project
+│   .snyk                   <-- vulnerability scan (via snyk) config
+│   .token                  <-- file with token for private repos (condigure in .npmrc)
+│   Dockerfile              <-- minimal example of a node service Dockerfile
+│   .eslint.config.js       <-- linting for the project
 │   gulpfile.js             <-- Gulp build scripts. used for building na other features (eg docs)
 │   jest.config.ts          <-- Tests Configuration file
-│   mdCompile.json          <-- md Documentation generation configuration file
 │   jsdocs.json             <-- jsdoc Documentation generation configuration file
-│   Dockerfile              <-- minimal example of a node service Dockerfile
 │   LICENCE.md              <-- Licence disclamer
+│   mdCompile.json          <-- md Documentation generation configuration file
 │   package.json
 │   package-lock.json
 │   README.md               <-- Readme File dynamically compiled from 'workdocs' via the 'docs' npm script
-│   tsconfig.json           <-- Typescript config file. Is overriden in 'gulpfile.js' 
+│   tsconfig.json           <-- Typescript config file. Is overriden in 'gulpfile.js'
 │
+└───.github
+│   │   ...                 <-- github workflows and templates
+│   
 └───bin
 │   │   tag_release.sh      <-- Script to help with releases
 │   
