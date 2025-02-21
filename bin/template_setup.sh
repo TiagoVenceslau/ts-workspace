@@ -50,7 +50,7 @@ npx npm-check-updates -u
 # Delete the preinstall script from package.json (we only need it the first run)
 node<<EOF > _.json && mv _.json package.json
 var o = $(cat package.json);
-delete o["scripts"]["preinstall"];
+delete o["scripts"]["before-install"];
 console.log(JSON.stringify(o, null, 2));
 EOF
 

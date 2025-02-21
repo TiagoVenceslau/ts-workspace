@@ -35,7 +35,7 @@ Defines a 'way' to write jsDocs to optimize the output
 
 Optimized for github in terms of badges. CI is equivalent between Gitlab and Github.
 
-Auto setup on first `npm install`
+Will self upgrade if `npm run before-install` is called prior to `npm install`
 
 Will accept a `.token` file containing token valid for private npm dependencies, npm and docker registries
 
