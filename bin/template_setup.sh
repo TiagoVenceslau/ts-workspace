@@ -43,34 +43,30 @@ function ask(){
     echo "$real_answer"
 }
 
+
 # Flash Forward the dependencies
 npx npm-check-updates -u
 
 # Delete the preinstall script from package.json (we only need it the first run)
 node<<EOF > _.json && mv _.json package.json
 var o = $(cat package.json);
-delete o["scripts"]["preinstall"];
+delete o["scripts"]["before-install"];
 console.log(JSON.stringify(o, null, 2));
 EOF
-#
-## Replace all references to
-#node<<EOF > _.json && mv _.json package.json
-#var o = $(cat package.json);
-#delete o["scripts"]["preinstall"];
-#console.log(JSON.stringify(o, null, 2));
-#EOF
 
 # create the token file
 touch .token
 
 ## Create the initial commit after this runs
-#if [[ $(git status --porcelain) ]]; then
-#  git config user.email "setup@automation.com"
-#  git config user.name "setup_automation"
-#  git add .
-#  git commit -m "refs #1 - initial commit"
-#  git push
-#fi
+if [[ $(git status --porcelain) ]]; then
+  git config user.email "setup@automation.com"
+  git config user.name "setup_automation"
+  git add .
+  git commit -m "refs #1 - initial commit"
+  git push
+  git config --unset user.name
+  git config --unset user.email
+fi
 
 # delete this file
 rm -f ./bin/template_setup.sh

@@ -5,7 +5,7 @@
 
 ## Getting help
 
-If you have bug reports, questions or suggestions please [create a new issue](https://github.com/tiagovenceslau/ts-workspace/issues/new/choose).
+If you have bug reports, questions or suggestions please [create a new issue](https://github.com/decaf-ts/ts-workspace/issues/new/choose).
 
 ## Contributing
 

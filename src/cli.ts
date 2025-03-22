@@ -7,14 +7,14 @@
  */
 
 let counter = 60;
-console.log(`This is a poor example of a cli. will stop in ${60} seconds`);
+console.log(`This is a poor example of a cli. will stop in ${60} seconds`,);
 
 function iterator() {
   setTimeout(() => {
-    if (!--counter) process.exit(1);
-    console.log(counter);
+    if (!--counter) process.exit(1,);
+    console.log(counter,);
     iterator();
-  }, 1000);
+  }, 1000,);
 }
 
 iterator();
