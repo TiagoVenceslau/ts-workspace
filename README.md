@@ -1,3 +1,5 @@
+ARCHIVED. Moved to become bart of the ![decaf-ts](github.com/decaf-ts) project at ![ts-workspace](github.com/decaf-ts/ts-workspace)
+
 ![Banner](./workdocs/assets/Banner.png)
 ## Typescript Template
 
